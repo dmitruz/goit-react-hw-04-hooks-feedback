@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Feedback from './components/Feedback/Feedback'
+import Feedback from "./components/Feedback/Feedback";
 import Statistics from "./components/Statistics/Statistics";
 import Section from "./components/Section/Section";
 import Notification from "./components/Notification/Notification";
@@ -38,31 +38,30 @@ export default function App() {
     return Math.round((good / countTotalFeedback()) * 100) || 0;
   };
 
+
   return (
-    <>
-    <Section title="Please leave feedback">
-      <Feedback
-        options={['good', 'neutral', 'bad']}
-        onLeaveFeedback={onLeaveFeedback}
-      />
-
-      <h3 className="statistics">Statistics</h3>
-
-      {countTotalFeedback() ? (
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={countTotalFeedback()}
-          positivePercentage={countPositiveFeedbackPercentage()}
-        />
-      ) : (
-        <Notification message="No feedback given" />
-      )}
-    </Section>
-    </>
-  );
-}
-
+      <>
+        <Section title={"Please leave feedback"}>
+          <Feedback
+            options={['good', 'neutral', 'bad']}
+            onLeaveFeedback={onLeaveFeedback}
+          />
+        </Section>
+        <Section title={"Statistics"}>
+          {countTotalFeedback() ? (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={countTotalFeedback()}
+              positivePercentage={countPositiveFeedbackPercentage()}
+            />
+          ) : (
+            <Notification message="There is no feedback" />
+          )}
+        </Section>
+      </>
+    );
+  }
   
 
